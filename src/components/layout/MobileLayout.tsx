@@ -9,7 +9,7 @@ interface MobileLayoutProps {
 export default function MobileLayout(props: MobileLayoutProps) {
   const {children} = props;
   return (
-    <div className="flex">
+    <div className="flex flex-col">
       <Header/>
       <div id="spacer" className="pt-[50px]" />
       {children}

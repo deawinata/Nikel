@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+
+@theme {
+    --breakpoint-lg: 70rem;
+    --breakpoint-xl: 85rem;
+    --color-primary: #f87171;
+    --color-secondary: #fecdd3;
+}

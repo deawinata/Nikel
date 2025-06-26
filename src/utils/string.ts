@@ -1,10 +1,11 @@
-export const BASE_URL_PRODUCTS = "https://api.escuelajs.co/api/v1/products"
-export const BASE_URL_CATEGORIES = "https://api.escuelajs.co/api/v1/categories"
+export const BASE_URL_PRODUCTS = "https://dummyjson.com/products"
+export const BASE_URL_CATEGORIES = "https://dummyjson.com/products/categories"
 
 export const createURLParams = (params: {
   [key: string]: string | string[] | number | undefined | null
 }) => {
-  const keys = Object.keys(params)
+  const { category, ...query } = params
+  const keys = Object.keys(query)
 
   if (!keys.length) return ''
 
@@ -18,5 +19,7 @@ export const createURLParams = (params: {
       }
     })
 
-  return `?${queryParams.toString()}`
+  const categoryParam = category ? `/category/${category}` : ''
+
+  return `${categoryParam}?${queryParams.toString()}`
 }

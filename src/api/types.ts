@@ -1,30 +1,36 @@
 export interface IProduct {
   id: number;
   title: string;
-  slug: string;
-  price: number;
   description: string;
-  category: ICategory;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  stock: number;
   images: string[];
-}
-
-export interface ICategory {
-  id: number;
-  name: string;
-  image: string;
-  slug: string;
+  thumbnail: string;
 }
 
 export interface IProductListParams {
   limit: number;
-  offset: number;
+  skip: number;
 }
 
 export interface IProductFilters {
-  categoryId?: number;
-  categorySlug?: string;
+  category?: string;
   limit?: number;
   offset?: number;
+  sortBy?: string;
+  order?: string;
 }
 
-export type TGetProductListResponse = IProduct[] | null
+export type TGetProductListResponse = {
+  products: IProduct[];
+  total: number;
+  skip: number;
+  limit: number;
+} | null
+
+export type Category = {
+  slug: string;
+  name: string;
+}

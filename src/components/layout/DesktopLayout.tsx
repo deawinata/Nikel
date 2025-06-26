@@ -9,12 +9,11 @@ interface DesktopLayoutProps {
 export default function DesktopLayout(props: DesktopLayoutProps) {
   const {children} = props;
   return (
-    <div className="flex flex-col w-full bg-white">
+    <>
       <Header/>
-      <div id="spacer" className="pt-[50px]" />
-      <div className="flex flex-col gap-2 w-full bg-white h-[calc(100vh_-_50px)]">
-        {children}
+      <div className="flex items-center justify-center w-full px-4 py-6 bg-gray-100">
+        <div className="max-w-full">{children}</div>
       </div>
-    </div>
+    </>
   )
 }
