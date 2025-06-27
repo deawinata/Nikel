@@ -31,7 +31,8 @@ const ProductCard = ({data, className, isLoading}: TProductCardProps) => {
         <div
           className={twMerge("flex flex-col gap-2 p-3 bg-box", containerSize)}>
           <Link className="flex flex-col h-full gap-3" href={`/product/${data.id}`}>
-            <div className="flex max-h-[100px] md:max-h-[180px] justify-center bg-secondary rounded-lg p-1">
+            <div
+              className={`flex max-h-[100px] md:max-h-[180px] justify-center rounded-lg p-1 ${isImageLoaded ? "bg-secondary" : ""}`}>
               <Image
                 src={data.thumbnail}
                 alt={data.title}
@@ -40,7 +41,7 @@ const ProductCard = ({data, className, isLoading}: TProductCardProps) => {
                 className="object-contain object-center"
                 onLoad={() => setIsImageLoaded(true)}
               />
-              <Loader className={isImageLoaded ? "hidden" : ""} width={imageWidth} height={imageHeight} isRounded/>
+              <Loader className={isImageLoaded ? "hidden" : "p-1"} width={imageWidth} height={imageHeight} isRounded/>
             </div>
             <div className="flex flex-col flex-grow gap-1">
               <div>{data.title}</div>
