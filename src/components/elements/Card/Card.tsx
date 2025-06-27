@@ -1,20 +1,21 @@
 import {PropsWithChildren} from 'react'
 import {twMerge} from 'tailwind-merge'
 
-interface CardProps {
-    className?: string
+type TCardProps = {
+  className?: string
 }
 
-export default function Card(props: PropsWithChildren<CardProps>) {
-    const {children, className} = props
-    return (
-        <div
-            className={twMerge(
-                'shadow rounded-lg overflow-hidden relative',
-                className
-            )}
-        >
-            {children}
-        </div>
-    )
+const Card = ({className, children}: PropsWithChildren<TCardProps>) => {
+  return (
+    <div
+      className={twMerge(
+        'shadow rounded-lg overflow-hidden relative',
+        className
+      )}
+    >
+      {children}
+    </div>
+  )
 }
+
+export default Card

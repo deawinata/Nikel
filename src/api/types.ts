@@ -18,7 +18,7 @@ export interface IProductListParams {
 export interface IProductFilters {
   category?: string;
   limit?: number;
-  offset?: number;
+  skip?: number;
   sortBy?: string;
   order?: string;
 }
@@ -30,7 +30,12 @@ export type TGetProductListResponse = {
   limit: number;
 } | null
 
-export type Category = {
+export interface Category {
   slug: string;
   name: string;
+}
+
+export interface ICart {
+  item: IProduct;
+  qty: number;
 }

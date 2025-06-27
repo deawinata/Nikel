@@ -1,8 +1,7 @@
+import Icons from '@/components/elements/Icons'
 import {useIsMobile} from '@/hooks/useIsMobile'
 
-import Icons from '@/components/elements/Icons'
-
-type IPagination = {
+type TPagination = {
   page: number
   limit: number
   total?: number
@@ -10,14 +9,14 @@ type IPagination = {
   className?: string
 }
 
-export default function Pagination(
+const Pagination = (
   {
     page,
     limit,
     total = 0,
     onPageChanged,
     className,
-  }: IPagination) {
+  }: TPagination) => {
   const totalPages = Math.ceil(total / limit)
   const maxPagingDisplayed = 3
   const isMobile = useIsMobile()
@@ -100,3 +99,5 @@ export default function Pagination(
     </div>
   )
 }
+
+export default Pagination

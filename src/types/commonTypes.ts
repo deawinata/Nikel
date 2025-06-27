@@ -1,3 +1,8 @@
 export interface ErrorMessage {
-    message?: string
+  message?: string
+}
+
+export interface Item {
+  label: string
+  value: string
 }

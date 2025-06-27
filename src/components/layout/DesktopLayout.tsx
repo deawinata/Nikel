@@ -6,13 +6,12 @@ interface DesktopLayoutProps {
   children: React.ReactNode;
 }
 
-export default function DesktopLayout(props: DesktopLayoutProps) {
-  const {children} = props;
+export default function DesktopLayout({children}: DesktopLayoutProps) {
   return (
     <>
       <Header/>
-      <div className="flex items-center justify-center w-full px-4 py-6 bg-gray-100">
-        <div className="max-w-full">{children}</div>
+      <div className="flex justify-center w-full min-h-[calc(100vh_-_50px)] px-4 py-6 bg-tertiary text-sm">
+        <div className="w-full">{children}</div>
       </div>
     </>
   )

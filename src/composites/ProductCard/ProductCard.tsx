@@ -1,23 +1,57 @@
-import Card from "@/components/elements/Card/Card";
+import {useState} from "react";
 import Image from "next/image";
-import {IProduct} from "@/api/types";
+import {twMerge} from "tailwind-merge";
 
-interface IProductCardProps {
-    data: IProduct;
-    className?: string;
+import {useIsMobile} from "@/hooks/useIsMobile";
+import {IProduct} from "@/api/types";
+import {Loader, Card} from "@/components/elements";
+import PriceWrapper from "@/composites/PriceWrapper/PriceWrapper";
+import ATCButton from "@/composites/ATCButton/ATCButton";
+import Link from "next/link";
+
+type TProductCardProps = {
+  data: IProduct;
+  className?: string;
+  isLoading?: boolean;
 }
 
-const ProductCard = (props: IProductCardProps) => {
-    const {data, className = ""} = props;
-    return (
-        <Card className={className}>
-            <div className="flex flex-col h-[200px] w-[150px] md:h-[300px] md:w-[200px] gap-2 p-3">
-              <div className="flex max-h-[80px] items-center justify-center">
-                <Image src={data.thumbnail} alt={data.title} width={100} height={80} objectFit="contain" objectPosition="center" />
-              </div>
+const ProductCard = ({data, className, isLoading}: TProductCardProps) => {
+  const isMobile = useIsMobile();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  const containerSize = "text-xs h-[270px] w-[150px] md:h-[350px] md:w-[200px]"
+  const imageWidth = isMobile ? 130 : 180
+  const imageHeight = isMobile ? 80 : 160
+
+  return (
+    <Card className={className}>
+      {isLoading ?
+        <Loader className={containerSize} isRounded isClassNameDimension/>
+        :
+        <div
+          className={twMerge("flex flex-col gap-2 p-3 bg-box", containerSize)}>
+          <Link className="flex flex-col h-full gap-3" href={`/product/${data.id}`}>
+            <div className="flex max-h-[100px] md:max-h-[180px] justify-center bg-secondary rounded-lg p-1">
+              <Image
+                src={data.thumbnail}
+                alt={data.title}
+                width={imageWidth}
+                height={imageHeight}
+                className="object-contain object-center"
+                onLoad={() => setIsImageLoaded(true)}
+              />
+              <Loader className={isImageLoaded ? "hidden" : ""} width={imageWidth} height={imageHeight} isRounded/>
             </div>
-        </Card>
-    )
+            <div className="flex flex-col flex-grow gap-1">
+              <div>{data.title}</div>
+              <PriceWrapper price={data.price} discount={data.discountPercentage}/>
+            </div>
+          </Link>
+          <ATCButton data={data} isFullWidth buttonSize={isMobile ? "small" : "large"}/>
+        </div>
+      }
+    </Card>
+  )
 }
 
 export default ProductCard

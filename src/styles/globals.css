@@ -5,6 +5,9 @@
 @theme {
     --breakpoint-lg: 70rem;
     --breakpoint-xl: 85rem;
-    --color-primary: #f87171;
+    --color-primary: #89CFF0;
     --color-secondary: #fecdd3;
+    --color-tertiary: #F0FFFF;
+    --color-box: #FFFDD0;
+    --color-danger: #e74c3c;
 }

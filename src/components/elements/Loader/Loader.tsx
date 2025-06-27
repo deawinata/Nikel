@@ -1,16 +1,37 @@
 import {twMerge} from "tailwind-merge";
 
-interface ILoaderProps {
+type TContentLoaderProps = {
+  width?: string | number;
+  height?: string | number;
+  isRounded?: boolean;
+  isCircle?: boolean;
   className?: string;
+  isClassNameDimension?: boolean;
 }
 
-export default function Loader(props: ILoaderProps) {
-  const {className} = props;
+const Loader = (
+  {
+    width = "100%",
+    height = "100%",
+    isRounded,
+    isCircle,
+    className,
+    isClassNameDimension = false,
+  }: TContentLoaderProps) => {
+
+  const dimension = {width, height};
+
   return (
-    <div className={twMerge("bg-gray-200 rounded-xl shrink-0 grow-0 animate-pulse", className)}>
-      <div className="animate-pulse h-full relative">
-        <div className={"bg-gray-200 absolute inset-0"}/>
-      </div>
-    </div>
-  )
+    <div
+      className={twMerge(
+        "bg-gray-300 animate-pulse shrink-0 grow-0",
+        isRounded && "rounded-lg",
+        isCircle && "rounded-full",
+        className
+      )}
+      style={isClassNameDimension ? {} : dimension}
+    />
+  );
 }
+
+export default Loader;

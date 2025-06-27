@@ -1,23 +1,31 @@
 import {twMerge} from "tailwind-merge";
-import {PropsWithChildren} from "react";
+import React, {PropsWithChildren} from "react";
 
-export interface ButtonProps {
-    className?: string
-    onClick?: () => void
-    variant?: "primary" | "outlined"
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string
+  onClick?: () => void
+  variant?: "primary" | "outlined"
+  isFullWidth?: boolean
 }
 
-const Button = (props: PropsWithChildren<ButtonProps>) => {
-    const {children, className, onClick, variant} = props
+const Button = (
+  {
+    className,
+    onClick,
+    variant = "primary",
+    isFullWidth = false,
+    children,
+  }: PropsWithChildren<ButtonProps>) => {
 
-    return (
-        <button
-            className={twMerge(className, variant === "primary" ? "bg-red-300" : variant === "outlined" ? "outline-1 outline-red-500 text-red-500" : "")}
-            onClick={onClick}
-        >
-            {children}
-        </button>
-    )
+  return (
+    <button
+      type="button"
+      className={twMerge("flex items-center justify-center rounded-lg text-xs", isFullWidth ? "w-full p-1" : "w-fit", className, variant === "primary" ? "bg-primary text-white" : variant === "outlined" ? "outline-1 outline-primary text-primary" : "")}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  )
 }
 
 export default Button

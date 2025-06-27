@@ -4,9 +4,7 @@ import MobileLayout from "@/components/layout/MobileLayout";
 import DesktopLayout from "@/components/layout/DesktopLayout";
 import React from "react";
 import {useIsMobile} from "@/hooks/useIsMobile";
-import {Provider, useAtomValue} from "jotai";
-import {isLoading} from "@/store";
-import Loading from "@/components/elements/Loading";
+import {Provider} from "jotai";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 const client = new QueryClient({
@@ -15,14 +13,12 @@ const client = new QueryClient({
 
 export default function RootLayoutClient({children}: { children: React.ReactNode }) {
   const isMobile = useIsMobile()
-  const loading = useAtomValue(isLoading)
   return (
     <>
       <QueryClientProvider client={client}>
         <Provider>
-          {loading ? <Loading/> :
-            isMobile ? <MobileLayout>{children}</MobileLayout> :
-              <DesktopLayout>{children}</DesktopLayout>}
+          {isMobile ?
+            <MobileLayout>{children}</MobileLayout> : <DesktopLayout>{children}</DesktopLayout>}
         </Provider>
       </QueryClientProvider>
     </>

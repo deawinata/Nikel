@@ -1,5 +1,5 @@
-import ProductList from "../ProductList";
+import ProductList from "@/app/ProductList";
 
 export default function ProductListPage() {
-  return <ProductList />
+  return <ProductList/>
 }

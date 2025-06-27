@@ -6,13 +6,13 @@ interface MobileLayoutProps {
   children: React.ReactNode;
 }
 
-export default function MobileLayout(props: MobileLayoutProps) {
-  const {children} = props;
+export default function MobileLayout({children}: MobileLayoutProps) {
   return (
-    <div className="flex flex-col">
+    <>
       <Header/>
-      <div id="spacer" className="pt-[50px]" />
-      {children}
-    </div>
+      <div className="flex justify-center w-full min-h-[calc(100vh_-_50px)] px-2 py-4 bg-tertiary text-sm">
+        <div className="max-w-full">{children}</div>
+      </div>
+    </>
   )
 }
