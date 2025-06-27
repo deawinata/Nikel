@@ -123,7 +123,6 @@ const PLP = (
             <Dropdown
               isOpen={filterPopup.isOpen}
               iconName="filter"
-              buttonClass="p-2 border-[1px] border-primary rounded-lg"
               iconClass="w-4 h-4 text-primary"
               onClickAction={() => onClickFilter()}
               items={categoryOptions}
@@ -135,7 +134,6 @@ const PLP = (
             <Dropdown
               isOpen={sortPopup.isOpen}
               iconName="sort"
-              buttonClass="p-2 border-[1px] border-primary rounded-lg"
               iconClass="w-4 h-4 text-primary"
               onClickAction={() => onClickSort()}
               items={sortOptions}

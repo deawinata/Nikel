@@ -1,7 +1,7 @@
 import PDP from "@/containers/PDP";
 import {BASE_URL_PRODUCTS} from "@/utils/string";
 
-async function getProductById(id: number) {
+async function getProductById(id: string) {
   let result = null
   const url = `${BASE_URL_PRODUCTS}/${id}`;
   try {
@@ -13,7 +13,7 @@ async function getProductById(id: number) {
 }
 
 type TProductDetailProps = {
-  id: number;
+  id: string;
 }
 
 const ProductDetail = async (props: TProductDetailProps) => {

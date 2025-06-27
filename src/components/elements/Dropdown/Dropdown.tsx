@@ -30,7 +30,7 @@ const Dropdown = (
   return (
     <div className="relative inline-block text-left">
       <Menu>
-        <Button className={buttonClass} onClick={onClickAction}>
+        <Button variant="outlined" className={buttonClass} onClick={onClickAction}>
           <Icons name={iconName} className={iconClass}/>
         </Button>
 

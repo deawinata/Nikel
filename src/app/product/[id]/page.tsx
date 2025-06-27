@@ -1,14 +1,6 @@
 import ProductDetail from "@/app/ProductDetail";
 
-interface PageProps {
-  params: { id: number };
-}
-
-const ProductDetailPage = async ({params}: PageProps) => {
+export default async function ProductDetailPage({params}: { params: Promise<{ id: string }> }) {
   const {id} = await params;
-  return (
-    <ProductDetail id={id}/>
-  );
+  return <ProductDetail id={id}/>;
 }
-
-export default ProductDetailPage;
